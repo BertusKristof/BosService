@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if(!Schema::hasTable('user_register')){
         Schema::create('user_register', function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
@@ -20,6 +21,8 @@ return new class extends Migration
             $table->string('register_phone');
             $table->timestamps();
         });
+    }
+    if(!Schema::hasTable('user_login')){
         Schema::create('user_login', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('user_register')->onDelete('cascade');
@@ -28,6 +31,7 @@ return new class extends Migration
             $table->string('login_password');
             $table->timestamps();
         });
+    }
 
     }
 };

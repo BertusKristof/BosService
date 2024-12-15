@@ -11,7 +11,7 @@
         <div class="container">
             <h1>BosService Bejelentkezés</h1>
             <nav>
-                <a href="index.blade.php">Vissza a főoldalra</a>
+                <a href="">Vissza a főoldalra</a>
             </nav>
         </div>
     </header>
@@ -20,8 +20,9 @@
         <section class="login">
             <h2>Bejelentkezés</h2>
             <form action="{{route('login')}}" method="POST">
-                <label for="username">Felhasználónév</label>
-                <input type="text" id="username" name="username" required>
+                @csrf
+                <label for="email">Felhasználónév</label>
+                <input type="text" id="email" name="email" required>
                 
                 <label for="password">Jelszó</label>
                 <input type="password" id="password" name="password" required>
@@ -29,8 +30,8 @@
                 <button type="submit">Bejelentkezés</button>
             </form>
         <section class="register">
-            <a href="register.blade.php" class="aclass">
-                <button href="register.blade.php">Regisztráció</button>
+            <a href="{{route('register')}}" class="aclass">
+                <button>Regisztráció</button>
             </a>
     </main>
 

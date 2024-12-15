@@ -1,32 +1,19 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\UserLogin;
-use App\Models\UserRegister;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-
-// Route::post('/register', [UserController::class, 'register']);
-Route::post('/login', [UserController::class, 'store'])->name('login');
-Route::post('/register', [UserController::class, 'store'])->name('register');
-
+// use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use Illuminate\Support\Facades\Auth;
 
 
-class UserController extends Controller
-{
-    public function index() {
-        return view('index');
-    }
+Route::get('/', function(){
+    return view('main');
+})->name('main');
 
-    public function login() {
-        return view('login');
-    }
+Route::get('login',[LoginController::class, 'showLoginForm'])->name('login');
+Route::post('login', [LoginController::class, 'login']);
 
-    public function register() {
-        return view('register');
-    }
-
-    public function idopont() {
-        return view('idopont');
-    }
-}
+Route::get('register',[RegisterController::class, 'showRegisterForm'])->name('register');
+Route::post('register', [RegisterController::class, 'register']);
