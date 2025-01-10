@@ -11,7 +11,7 @@
         <div class="container">
             <h1>Időpontfoglalás</h1>
             <nav>
-                <a href="index.blade.php">Főoldal</a>
+                <a href="{{ url('/') }}">Főoldal</a>
                 <a href="#about">Rólunk</a>
                 <a href="#services">Szolgáltatásaink</a>
                 <a href="#team">Csapatunk</a>

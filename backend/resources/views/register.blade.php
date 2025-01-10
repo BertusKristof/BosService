@@ -12,7 +12,7 @@
         <div class="container2">
             <h1>BosService Regisztráció</h1>
             <nav class="nav2">
-                <a href="{{url('/index.blade.php')}}">Vissza a főoldalra</a>
+                <a href="{{url('/')}}">Vissza a főoldalra</a>
             </nav>
         </div>
     </header>

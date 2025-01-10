@@ -11,7 +11,7 @@
         <div class="container">
             <h1>BosService Bejelentkezés</h1>
             <nav>
-                <a href="">Vissza a főoldalra</a>
+                <a href="{{ url('/') }}">Vissza a főoldalra</a>
             </nav>
         </div>
     </header>

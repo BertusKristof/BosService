@@ -38,7 +38,7 @@
             <div class="hero-container">
                 <img src="{{asset('kepek/na.jpg')}}" alt="Autószerviz">
                 <div class="booking">
-                    <a href="idopont.blade.php" class="booking-animation">Időpont foglalás</a>
+                    <a href="{{url('idopont')}}" class="booking-animation">Időpont foglalás</a>
                 </div>
             </div>
         </section>

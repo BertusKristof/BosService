@@ -51,8 +51,8 @@ function confirmBooking() {
     }
 }
 
-// document.getElementById('booking-date').addEventListener('change', (event) => {
-//     selectedDate = event.target.value;
-//     updateSummary();
-//     generateTimeSlots(); // Frissíti az időpontokat az új dátumhoz
-// });
+document.getElementById('booking-date').addEventListener('change', (event) => {
+    selectedDate = event.target.value;
+    updateSummary();
+    generateTimeSlots(); 
+});
