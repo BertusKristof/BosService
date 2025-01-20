@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\user_register;
 use App\Models\user_login;
+use App\Models\appointments;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
@@ -21,7 +22,7 @@ class RegisterController extends Controller
         $validator = Validator::make($request->all(),[
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'register_email' => 'required|email|max:255|unique:user_register',
+            'register_email' => 'required|email|max:255|',
             'register_password' => [
                 'required',
             Password::min(8) 
@@ -48,9 +49,16 @@ class RegisterController extends Controller
             'register_password' => Hash::make($request->register_password),
         ]);
         user_login::create([
+            // 'login' => $register_user->register_id,
             'login_email' => $request->register_email,
             'login_phone' => $request->register_phone,
             'login_password' => $register_user->register_password
+        ]);
+        appointments::create([
+            'appointment_contact_name' => $request->first_name . ' ' . $request->last_name,
+            'appointment_service' => null,
+            'appointment_date' => null,
+            'appointment_time' => null,
         ]);
         return redirect()->route('main');
     }

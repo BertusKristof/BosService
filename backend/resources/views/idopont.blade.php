@@ -21,14 +21,15 @@
     </header>
 
     <main>
-        <section class="modern-booking">
+        <form class="modern-booking"  method="POST">
+            @csrf
             <h2>Foglaljon időpontot könnyedén!</h2>
             <div class="booking-container">
                 <div class="service-select">
                     <h3>Válasszon szolgáltatást</h3>
-                    <button onclick="selectService('Gumicsere')">Gumicsere</button>
-                    <button onclick="selectService('Olajcsere')">Olajcsere</button>
-                    <button onclick="selectService('Diagnosztika')">Diagnosztika</button>
+                    <button type="button" onclick="selectService('Gumicsere')">Gumicsere</button>
+                    <button type="button" onclick="selectService('Olajcsere')">Olajcsere</button>
+                    <button type="button" onclick="selectService('Diagnosztika')">Diagnosztika</button>
                 </div>
                 <div class="calendar">
                     <h3>Válasszon dátumot</h3>
@@ -41,10 +42,28 @@
                 <div class="summary">
                     <h3>Foglalás összegzése</h3>
                     <p id="summary"></p>
-                    <button id="confirm-booking" onclick="confirmBooking()">Foglalás megerősítése</button>
+                    <button id="confirm-booking" onclick="showModal ()" type="button">Foglalás megerősítése</button>
+                    <!-- <button onclick="showModal()">Modal megjelenítése</button> -->
                 </div>
             </div>
-        </section>
+            </form>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <form action="{{ route('idopont') }}" method="POST">
+                <h2>Modal Cím</h2>
+                <p>Rendszám tábla:</p>
+                <input type="text" id="modal-input">
+                <p>Autó Márka:</p>
+                <input type="text" id="modal-input">
+                <p>Autó Modell:</p>
+                <input type="text" id="modal-input">
+                <p>Évjárat:</p>
+                <input type="text" id="modal-input">
+                <button class="modal-submit" onclick="submitModal()">Küldés</button>
+                </form>
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -53,6 +72,6 @@
         </div>
     </footer>
 
-    <script src="{{asset('scripts.js')}}"></script>
+    <script src="{{asset('js/scripts.js')}}"></script>
 </body>
 </html>

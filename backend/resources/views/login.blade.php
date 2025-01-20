@@ -21,11 +21,11 @@
             <h2>Bejelentkezés</h2>
             <form action="{{route('login')}}" method="POST">
                 @csrf
-                <label for="email">Felhasználónév</label>
-                <input type="text" id="email" name="email" required>
+                <label for="login_email">Felhasználónév</label>
+                <input type="text" id="login_email" name="login_email" required>
                 
-                <label for="password">Jelszó</label>
-                <input type="password" id="password" name="password" required>
+                <label for="login_password">Jelszó</label>
+                <input type="password" id="login_password" name="login_password" required> 
                 
                 <button type="submit">Bejelentkezés</button>
             </form>

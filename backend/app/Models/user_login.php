@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class user_login extends Model
 {
     use HasFactory;
-
     protected $table = "user_login";
     public $timestamps = false;    
     protected $fillable = [
+        // 'login_id',
         'login_email',
         'login_phone',
         'login_password',

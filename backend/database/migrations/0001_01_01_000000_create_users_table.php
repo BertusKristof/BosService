@@ -32,6 +32,15 @@ return new class extends Migration
             $table->timestamps();
         });
     }
-
+    if(!Schema::hasTable('appointments')){
+        Schema::create('appointments', function (Blueprint $table) {
+            $table->id();
+            $table->string('appointment_contact_name');
+            $table->string('appointment_service');
+            $table->date('appointment_date');
+            $table->time('appointment_time');
+            $table->timestamps();
+        });
+    }
     }
 };

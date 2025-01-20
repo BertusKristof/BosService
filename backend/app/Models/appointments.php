@@ -11,11 +11,8 @@ class appointments extends Model
     protected $table = "appointments";
     public $timestamps = false;
     protected $fillable = [
-        'appointment_id	',
-        'costumer_name',
-        'car_license_plate',
+        'appointment_service',
         'appointment_date',
         'appointment_time',
-        'status'
     ];
 }

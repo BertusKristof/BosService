@@ -16,15 +16,15 @@ class LoginController extends Controller
     }
     public function login(Request $request){
         $request->validate([
-            'login' => 'required',
-            'password' => 'required',
+            'login_email' => 'required',
+            'login_password' => 'required',
         ]);     
         $credential = user_login::where('login_email', $request->login)
         ->orWhere('login_phone', $request->login)
         ->first();
 
-    if(!$credential || Hash::check($request->password, $credential->login_password)){
-        return back()->withErrors(['login' => 'Helytelen email/telefonszám vagy jelszó.']);
+    if(!$credential || !Hash::check($request->password, $credential->login_password)){
+        return back()->withErrors(['login_email' => 'Helytelen email/telefonszám vagy jelszó.']);
     }
 
     return redirect()->route('main');
