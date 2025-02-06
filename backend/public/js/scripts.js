@@ -59,16 +59,16 @@ function confirmBooking() {
     document.getElementById('confirm-booking').addEventListener('click',(event) => {
         event.preventDefault();
         UpdateUserAppointment();
-        showModal();
         /*const selectedService = document.getElementById('service-select').value;
         const selectedDate = document.getElementById('calendar').value;
         const selectedTime = document.getElementById('time-slot').value;*/
-
+        
         /*axios.post('/confirm-appointments', {
             appointment_service: selectedService,
             appointment_date: selectedDate,
             appointment_time: selectedTime,
-        })*/
+            })*/
+       showModal();
     });
 }
 
@@ -92,30 +92,69 @@ function generateTimeSlots() {
     });
 }
     
-function showModal() {
-    const modal = document.getElementById("myModal");
+function showCarModal() {
+    const modal = document.getElementById("car_myModal");
     modal.style.display = "block";
 }
 
-// Modal bezárása
-var span = document.getElementsByClassName("close")[0];
+var span = document.getElementsByClassName("car_close")[0];
 span.onclick = function() {
-    var modal = document.getElementById("myModal");
+    var modal = document.getElementById("car_myModal");
     modal.style.display = "none";
 }
 
-// Modal bezárása, ha a felhasználó a modalon kívül kattint
 window.onclick = function(event) {
-    var modal = document.getElementById("myModal");
+    var modal = document.getElementById("car_myModal");
     if (event.target == modal) {
         modal.style.display = "none";
     }
 }
 
-// Modal adatainak kezelése
-function submitModal() {
-    var input = document.getElementById("modal-input").value;
-    alert("Beírt szöveg: " + input);
-    var modal = document.getElementById("myModal");
-    modal.style.display = "none";
+// function submitCarModal() {
+//     var input = document.getElementById("car_modal-input").value;
+//     alert("Beírt szöveg: " + input);
+//     var modal = document.getElementById("car_myModal");
+//     modal.style.display = "none";
+// }
+
+// function showLoginModal() {
+//     const modal = document.getElementById("login_myModal");
+//     modal.style.display = "block";
+// }
+
+// var span = document.getElementsByClassName("login_close")[0];
+// span.onclick = function() {
+//     var modal = document.getElementById("login_myModal");
+//     modal.style.display = "none";
+// }
+
+// window.onclick = function(event) {
+//     var modal = document.getElementById("login_myModal");
+//     if (event.target == modal) {
+//         modal.style.display = "none";
+//     }
+// }
+
+// function submitLoginModal() {
+//     var input = document.getElementById("login_modal-input").value;
+//     alert("Beírt szöveg: " + input);
+//     var modal = document.getElementById("login_myModal");
+//     modal.style.display = "none";
+// }
+document.getElementById('modalLink').onclick = function() {
+  document.getElementById('myModal').style.display = 'block';
 }
+
+document.getElementsByClassName('close')[0].onclick = function() {
+  document.getElementById('myModal').style.display = 'none';
+}
+
+window.onclick = function(event) {
+  if (event.target == document.getElementById('myModal')) {
+    document.getElementById('myModal').style.display = 'none';
+  }
+}
+
+$('#showLoginForm').submit(function(e) {
+    e.preventDefault();
+})

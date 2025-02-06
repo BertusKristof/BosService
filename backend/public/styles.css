@@ -472,7 +472,7 @@ input[type="date"] {
     margin-left: 2%;
 }
 /* Modal stílusok */
-.modal {
+.car_modal {
     display: none; /* Alapértelmezés szerint rejtett */
     position: fixed; /* Maradjon a helyén, amikor az oldal görget */
     z-index: 1; /* Előtérben */
@@ -485,7 +485,7 @@ input[type="date"] {
     background-color: rgba(0,0,0,0.4); /* Fekete háttér átlátszósággal */
 }
 
-.modal-content {
+.car_modal-content {
     background-color: #fefefe;
     margin: 15% auto; /* 15% felülről és középre igazítva */
     padding: 20px;
@@ -494,27 +494,27 @@ input[type="date"] {
     text-align: center;
 }
 
-.close {
+.car_close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.car_close:hover,
+.car_close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
 
-.modal-content p,
-.modal-content input,
-.modal-content button {
+.car_modal-content p,
+.car_modal-content input,
+.car_modal-content button {
     display: block;
     margin: 10px auto;
 }
-.modal-submit {
+.car_modal-submit {
     margin-top: 10px; /* Térköz az input mező alatt */
     padding: 10px 20px;
     background-color: #4CAF50;
@@ -523,6 +523,61 @@ input[type="date"] {
     cursor: pointer;
 }
 
-.modal-submit:hover {
+.car_modal-submit:hover {
+    background-color: #45a049;
+}
+
+.login_modal {
+    display: none; /* Alapértelmezés szerint rejtett */
+    position: fixed; /* Maradjon a helyén, amikor az oldal görget */
+    z-index: 1; /* Előtérben */
+    left: 0;
+    top: 0;
+    width: 100%; /* Teljes szélesség */
+    height: 100%; /* Teljes magasság */
+    overflow: auto; /* Görgetés, ha szükséges */
+    background-color: rgb(0,0,0); /* Fekete háttér szín */
+    background-color: rgba(0,0,0,0.4); /* Fekete háttér átlátszósággal */
+}
+
+.login_modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% felülről és középre igazítva */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Szélesség */
+    text-align: center;
+}
+
+.login_close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.login_close:hover,
+.login_close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.login_modal-content p,
+.login_modal-content input,
+.login_modal-content button {
+    display: block;
+    margin: 10px auto;
+}
+.login_modal-submit {
+    margin-top: 10px; /* Térköz az input mező alatt */
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.login_modal-submit:hover {
     background-color: #45a049;
 }

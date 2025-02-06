@@ -35,7 +35,7 @@ class AppointmentController extends Controller
             'appointment_date' => $request->appointment_date,
             'appointment_time' => $request->appointment_time,
         ]);*/
-        DB::table('appointments')->updateOrCreate([
+        /*DB::table('appointments')->updateOrCreate([
             'appointment_date' => $request->appointment_date,
             'appointment_time' => $request->appointment_time,
             // 'contact_name' => $request->$contact_name,
@@ -44,7 +44,7 @@ class AppointmentController extends Controller
         [
             'contact_name' => $request->$contact_name,
             'appointment_service' => $request->appointment_service,
-        ]);
+        ]);*/
     }
     public function UpdateUserAppointment(Request $request){
         $validate = Validator::make($request->all(),[

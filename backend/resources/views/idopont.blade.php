@@ -42,25 +42,25 @@
                 <div class="summary">
                     <h3>Foglalás összegzése</h3>
                     <p id="summary"></p>
-                    <button id="confirm-booking" onclick="showModal ()" type="button">Foglalás megerősítése</button>
+                    <button id="confirm-booking" onclick="showCarModal ()" type="button">Foglalás megerősítése</button>
                     <!-- <button onclick="showModal()">Modal megjelenítése</button> -->
                 </div>
             </div>
             </form>
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
+        <div id="car_myModal" class="car_modal">
+            <div class="car_modal-content">
+                <span class="car_close">&times;</span>
                 <form action="{{ route('idopont') }}" method="POST">
                 <h2>Modal Cím</h2>
                 <p>Rendszám tábla:</p>
-                <input type="text" id="modal-input">
+                <input type="text" id="car_modal-input">
                 <p>Autó Márka:</p>
-                <input type="text" id="modal-input">
+                <input type="text" id="car_modal-input">
                 <p>Autó Modell:</p>
-                <input type="text" id="modal-input">
+                <input type="text" id="car_modal-input">
                 <p>Évjárat:</p>
-                <input type="text" id="modal-input">
-                <button class="modal-submit" onclick="submitModal()">Küldés</button>
+                <input type="text" id="car_modal-input">
+                <button class="car_modal-submit" onclick="submitCarModal()">Küldés</button>
                 </form>
             </div>
         </div>

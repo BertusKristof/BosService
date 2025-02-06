@@ -13,7 +13,7 @@ return new class extends Migration
     {
         if(!Schema::hasTable('user_register')){
         Schema::create('user_register', function (Blueprint $table) {
-            $table->id();
+            $table->id('register_id');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('register_email')->unique();
@@ -25,7 +25,7 @@ return new class extends Migration
     if(!Schema::hasTable('user_login')){
         Schema::create('user_login', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('user_register')->onDelete('cascade');
+            $table->foreignId('register_id')->constrained('user_register')->onDelete('cascade');
             $table->string('login_email');
             $table->string('login_phone');
             $table->string('login_password');

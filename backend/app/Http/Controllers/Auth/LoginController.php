@@ -19,11 +19,11 @@ class LoginController extends Controller
             'login_email' => 'required',
             'login_password' => 'required',
         ]);     
-        $credential = user_login::where('login_email', $request->login)
-        ->orWhere('login_phone', $request->login)
+        $credential = user_login::where('login_email', $request->login_email)
+        ->orWhere('login_phone', $request->login_email)
         ->first();
 
-    if(!$credential || !Hash::check($request->password, $credential->login_password)){
+    if(!$credential || !Hash::check($request->login_password, $credential->login_password)){
         return back()->withErrors(['login_email' => 'Helytelen email/telefonszám vagy jelszó.']);
     }
 

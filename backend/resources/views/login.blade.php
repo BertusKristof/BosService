@@ -26,7 +26,33 @@
                 
                 <label for="login_password">Jelszó</label>
                 <input type="password" id="login_password" name="login_password" required> 
-                
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <a href="#" id="showLoginModal">Elfelejtette a jelszavát?</a>
+                <div id="login_myModal" class="login_modal">
+                    <div class="login_modal-content">
+                        <span class="login_close">&times;</span>
+                        <form action="{{ route('login') }}" method="POST">
+                        <h2>Modal Cím</h2>
+                        <p>Rendszám tábla:</p>
+                        <input type="text" id="login_modal-input">
+                        <p>Autó Márka:</p>
+                        <input type="text" id="login_modal-input">
+                        <p>Autó Modell:</p>
+                        <input type="text" id="login_modal-input">
+                        <p>Évjárat:</p>
+                        <input type="text" id="login_modal-input">
+                        <button class="login_modal-submit" onclick="submitLoginModal()">Küldés</button>
+                        </form>
+                    </div>
+                </div>
                 <button type="submit">Bejelentkezés</button>
             </form>
         <section class="register">
