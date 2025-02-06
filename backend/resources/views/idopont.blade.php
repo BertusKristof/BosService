@@ -43,7 +43,6 @@
                     <h3>Foglalás összegzése</h3>
                     <p id="summary"></p>
                     <button id="confirm-booking" onclick="showCarModal ()" type="button">Foglalás megerősítése</button>
-                    <!-- <button onclick="showModal()">Modal megjelenítése</button> -->
                 </div>
             </div>
             </form>
@@ -51,7 +50,7 @@
             <div class="car_modal-content">
                 <span class="car_close">&times;</span>
                 <form action="{{ route('idopont') }}" method="POST">
-                <h2>Modal Cím</h2>
+                <h2>Autó adatok</h2>
                 <p>Rendszám tábla:</p>
                 <input type="text" id="car_modal-input">
                 <p>Autó Márka:</p>
