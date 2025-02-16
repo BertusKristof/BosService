@@ -27,6 +27,8 @@ class LoginController extends Controller
         return back()->withErrors(['login_email' => 'Helytelen email/telefonszám vagy jelszó.']);
     }
 
+    $token = $credential->createToken('authToken')->accessToken;
+
     return redirect()->route('main');
 }
 }

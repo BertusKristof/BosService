@@ -16,4 +16,7 @@ class user_login extends Model
         'login_phone',
         'login_password',
     ];
+    protected $hidden=[
+        'login_password'
+    ];
 }

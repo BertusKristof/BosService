@@ -1,17 +1,24 @@
 {
-    "private": true,
-    "type": "module",
+    "name": "laravel-backend",
+    "version": "1.0.0",
+    "description": "Laravel backend for the Angular-Laravel project",
+    "main": "index.js",
     "scripts": {
-        "build": "vite build",
-        "dev": "vite"
+      "dev": "php artisan serve",
+      "test": "php artisan test",
+      "lint": "eslint ."
+    },
+    "dependencies": {
+      "laravel/framework": "^8.0",
+      "fideloper/proxy": "^4.4",
+      "fruitcake/laravel-cors": "^2.0",
+      "guzzlehttp/guzzle": "^7.0",
+      "laravel/tinker": "^2.0"
     },
     "devDependencies": {
-        "autoprefixer": "^10.4.20",
-        "axios": "^1.7.4",
-        "concurrently": "^9.0.1",
-        "laravel-vite-plugin": "^1.0",
-        "postcss": "^8.4.47",
-        "tailwindcss": "^3.4.13",
-        "vite": "^6.0"
-    }
-}
+      "eslint": "^7.0.0"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "MIT"
+  }

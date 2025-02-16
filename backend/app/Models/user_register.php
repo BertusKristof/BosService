@@ -2,11 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
+// use Illuminate\Database\Eloquent\Model;
+
 class user_register extends Model
 {
-    use HasFactory;
+    use HasFactory, HasApiTokens, Notifiable;
 
     protected $table = "user_register";
     public $timestamps = false;    
@@ -16,5 +21,9 @@ class user_register extends Model
         'register_email',
         'register_phone',
         'register_password',
+    ];
+
+    protected $hidden =[
+        'register_password'
     ];
 }

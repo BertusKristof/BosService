@@ -28,23 +28,6 @@ class AppointmentController extends Controller
                 ->withErrors($validate)
                 ->withInput();
         }
-
-        /*$appointment = appointments::create([
-            'contact_name' => $request->$contact_name,
-            'appointment_service' => $request->appointment_service,
-            'appointment_date' => $request->appointment_date,
-            'appointment_time' => $request->appointment_time,
-        ]);*/
-        /*DB::table('appointments')->updateOrCreate([
-            'appointment_date' => $request->appointment_date,
-            'appointment_time' => $request->appointment_time,
-            // 'contact_name' => $request->$contact_name,
-            // 'appointment_service' => $request->appointment_service,
-        ],
-        [
-            'contact_name' => $request->$contact_name,
-            'appointment_service' => $request->appointment_service,
-        ]);*/
     }
     public function UpdateUserAppointment(Request $request){
         $validate = Validator::make($request->all(),[
@@ -52,13 +35,20 @@ class AppointmentController extends Controller
             'appointment_date' => 'required|date',
             'appointment_time' => 'required|string',
         ]);
+        $appointments = appointment::where('user_id', Auth::id())->first();
+        $appointments->update([
+            'appointment_service' => $request->appointment_service,
+            'appointment_date' => $request->appointment_date,
+            'appointment_time' => $request->appointment_time,
+        ]);
         if($validate->fails()){
             return response()->json(['error' => $validate->errors()], 400);
         }
-        DB::statment('CALL UpdateUserAppointment(?,?,?)',[
-            $request->appointment_date,
-            $request->appointment_time,  
-            $request->appointment_service,
-        ]);
+        // DB::statment('CALL UpdateUserAppointment(?,?,?)',[
+        //     $request->appointment_date,
+        //     $request->appointment_time,  
+        //     $request->appointment_service,
+        // ]);ű
+        return response()->json(['success' => 'Sikeresen módosítottad az időpontodat.'], 200);
     }
 }
