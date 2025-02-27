@@ -92,7 +92,11 @@ function selectService(service) {
     selectedService = service;
     updateSummary();
 }
+<<<<<<< Updated upstream
   document.getElementById('booking-date').addEventListener('change', (event) => {
+=======
+document.getElementById('booking-date').addEventListener('change', (event) => {
+>>>>>>> Stashed changes
     selectedDate = event.target.value;
     updateSummary();
     generateTimeSlots(); 
@@ -138,4 +142,17 @@ function generateTimeSlots() {
         };
         timeSlots.appendChild(button);
     });
+<<<<<<< Updated upstream
 }
+=======
+}
+fetch('http://localhost/api/endpoint', {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json',
+    }
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));
+>>>>>>> Stashed changes

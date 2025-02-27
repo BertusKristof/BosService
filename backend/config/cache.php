@@ -15,7 +15,11 @@ return [
     |
     */
 
+<<<<<<< Updated upstream
     'default' => env('CACHE_STORE', 'database'),
+=======
+    'default' => env('CACHE_DRIVER', 'file'),
+>>>>>>> Stashed changes
 
     /*
     |--------------------------------------------------------------------------

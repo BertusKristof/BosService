@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
+<<<<<<< Updated upstream
 class Handler extends ExceptionHandler
 {
     /**
@@ -52,4 +53,27 @@ class Handler extends ExceptionHandler
     {
         return parent::render($request, $exception);
     }
+=======
+class Handler extends ExceptionHandler{
+public function render($request, Throwable $exception)
+{
+    if ($request->is('api/*')) {
+        return response()->json([
+            'message' => $exception->getMessage(),
+            'error' => class_basename($exception),
+        ], $this->getStatusCode($exception));
+    }
+
+    return parent::render($request, $exception);
+}
+
+private function getStatusCode(Throwable $exception): int
+{
+    if (method_exists($exception, 'getStatusCode')) {
+        return $exception->getStatusCode();
+    }
+
+    return 500; 
+}
+>>>>>>> Stashed changes
 }

@@ -3,13 +3,13 @@
     "description": "A Laravel backend for the Angular application.",
     "type": "project",
     "require": {
-        "php": "^7.3|^8.3.1",
+        "php": "^8.3.1",
         "fideloper/proxy": "^4.4",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
         "symfony/mailer": "*",
-        "laravel/sanctum": "*",
-        "fruitcake/laravel-cors": "^3.0"
+        "laravel/sanctum": "^2.15",
+        "fruitcake/laravel-cors": "2.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

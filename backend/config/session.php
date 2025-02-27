@@ -156,7 +156,11 @@ return [
     |
     */
 
+<<<<<<< Updated upstream
     'domain' => env('SESSION_DOMAIN'),
+=======
+    'domain' => env('SESSION_DOMAIN', null),
+>>>>>>> Stashed changes
 
     /*
     |--------------------------------------------------------------------------
