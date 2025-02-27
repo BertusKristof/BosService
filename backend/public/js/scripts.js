@@ -64,23 +64,23 @@ function registerUser() {
     const phone = document.getElementById('phone').value;
     const password = document.getElementById('password').value;
 
-    fetch('http://localhost/project/Autoszerelo/register/register.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ first_name, last_name, email, phone, password }),
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.status === 'success') {
-                alert(data.message);
-                window.location.href = 'index.html';
-            } else {
-                alert(data.message);
-            }
-        })
-        .catch((error) => console.error('Hiba történt:', error));
+    // fetch('http://localhost/project/Autoszerelo/register/register.php', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({ first_name, last_name, email, phone, password }),
+    // })
+        // .then((response) => response.json())
+        // .then((data) => {
+        //     if (data.status === 'success') {
+        //         alert(data.message);
+        //         window.location.href = 'index.html';
+        //     } else {
+        //         alert(data.message);
+        //     }
+        // })
+        // .catch((error) => console.error('Hiba történt:', error));
 }
 
 let selectedService = null;
@@ -92,11 +92,8 @@ function selectService(service) {
     selectedService = service;
     updateSummary();
 }
-<<<<<<< Updated upstream
-  document.getElementById('booking-date').addEventListener('change', (event) => {
-=======
+
 document.getElementById('booking-date').addEventListener('change', (event) => {
->>>>>>> Stashed changes
     selectedDate = event.target.value;
     updateSummary();
     generateTimeSlots(); 
@@ -142,12 +139,9 @@ function generateTimeSlots() {
         };
         timeSlots.appendChild(button);
     });
-<<<<<<< Updated upstream
 }
-=======
-}
-fetch('http://localhost/api/endpoint', {
-    method: 'GET',
+fetch('http://127.0.0.1:8000/api/register', {
+    method: 'POST',
     headers: {
         'Content-Type': 'application/json',
     }
@@ -155,4 +149,3 @@ fetch('http://localhost/api/endpoint', {
 .then(response => response.json())
 .then(data => console.log(data))
 .catch(error => console.error('Error:', error));
->>>>>>> Stashed changes

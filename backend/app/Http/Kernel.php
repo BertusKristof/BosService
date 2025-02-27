@@ -14,23 +14,20 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-<<<<<<< Updated upstream
+        \App\Http\Middleware\HandleCors::class,
+
         // \App\Http\Middleware\TrustHosts::class,
-=======
->>>>>>> Stashed changes
         \App\Http\Middleware\TrustProxies::class,
         \Fruitcake\Cors\HandleCors::class,
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-<<<<<<< Updated upstream
         \Fruitcake\Cors\HandleCors::class,
         \App\Http\Middleware\CorsMiddleware::class,
         \Illuminate\Http\Middleware\HandleCors::class, 
 
-=======
->>>>>>> Stashed changes
+
     ];
 
     /**
@@ -40,30 +37,21 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            \App\Http\Middleware\EncryptCookies::class,
-            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Illuminate\Session\Middleware\StartSession::class,
-            // \Illuminate\Session\Middleware\AuthenticateSession::class,
-            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-<<<<<<< Updated upstream
-            \App\Http\Middleware\VerifyCsrfToken::class,
-=======
-            \App\Http\Middleware\VerifyCsrfToken::class, 
->>>>>>> Stashed changes
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            // \App\Http\Middleware\EncryptCookies::class,
+            // \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            // \Illuminate\Session\Middleware\StartSession::class,
+            // // \Illuminate\Session\Middleware\AuthenticateSession::class,
+            // \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            // \App\Http\Middleware\VerifyCsrfToken::class,
+            // \App\Http\Middleware\VerifyCsrfToken::class, 
+            // \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
         'api' => [
-<<<<<<< Updated upstream
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-=======
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             \Fruitcake\Cors\HandleCors::class,
-            'throttle:api',
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \Illuminate\Http\Middleware\HandleCors::class,
->>>>>>> Stashed changes
         ],
     ];
 
@@ -79,10 +67,7 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
-<<<<<<< Updated upstream
-=======
-        'cors' => \Fruitcake\Cors\HandleCors::class,
->>>>>>> Stashed changes
+        'cors' => \App\Http\Middleware\HandleCors::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,

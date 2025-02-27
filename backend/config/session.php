@@ -32,7 +32,7 @@ return [
     |
     */
 
-    'lifetime' => env('SESSION_LIFETIME', 120),
+    'lifetime' => (int) env('SESSION_LIFETIME', 120),
 
     'expire_on_close' => env('SESSION_EXPIRE_ON_CLOSE', false),
 
@@ -156,11 +156,7 @@ return [
     |
     */
 
-<<<<<<< Updated upstream
     'domain' => env('SESSION_DOMAIN'),
-=======
-    'domain' => env('SESSION_DOMAIN', null),
->>>>>>> Stashed changes
 
     /*
     |--------------------------------------------------------------------------
@@ -173,7 +169,7 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE', false),
+    'secure' => env('SESSION_SECURE_COOKIE'),
 
     /*
     |--------------------------------------------------------------------------

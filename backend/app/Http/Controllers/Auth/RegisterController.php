@@ -14,21 +14,6 @@ use Illuminate\Validation\Rules\Password;
 
 class RegisterController extends Controller
 {
-<<<<<<< Updated upstream
-    public function showRegisterForm(){
-        return view('register');
-    }
-=======
-    public function __construct(){
-        $this->middleware('cors');
-    }
-
-    public function options(Request $request)
-    {
-        return response()->json([], 200);
-    }
-    
->>>>>>> Stashed changes
     public function register(Request $request){
         
         $validator = Validator::make($request->all(),[
@@ -48,16 +33,10 @@ class RegisterController extends Controller
             ],
         ]);
         if($validator->fails()){
-<<<<<<< Updated upstream
-            return redirect('register')
-                ->withErrors($validator)
-                ->withInput();
-=======
             return response()->json([
                 'message' => 'Sikertelen regisztráció',
                 'errors' => $validator->errors()
             ],422);
->>>>>>> Stashed changes
         }
         
         $register_user = user_register::create([
@@ -68,25 +47,19 @@ class RegisterController extends Controller
             'register_password' => Hash::make($request->register_password),
         ]);
         user_login::create([
-            // 'login' => $register_user->register_id,
             'login_email' => $request->register_email,
             'login_phone' => $request->register_phone,
             'login_password' => $register_user->register_password
         ]);
         appointments::create([
-            'appointment_contact_name' => $request->first_name . ' ' . $request->last_name,
+            'contact_name' => $request->first_name . '   ' . $request->last_name,
             'appointment_service' => null,
             'appointment_date' => null,
             'appointment_time' => null,
         ]);
-<<<<<<< Updated upstream
-        return redirect()->route('main');
-=======
-        // return redirect()->route('main');
-        return respone()->json([
+        return response()->json([
             'message' => 'Sikeres regisztráció',
             'user' => $register_user
         ], 201);
->>>>>>> Stashed changes
     }
 }

@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://127.0.0.1:8000'),
 
     /*
     |--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => env('APP_TIMEZONE', 'UTC'),
+    'timezone' => 'UTC',
 
     /*
     |--------------------------------------------------------------------------
@@ -123,12 +123,9 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
     'providers' => [
-        // ...existing code...
-
-        /*
-        * Application Service Providers...
-        */
-    Illuminate\Foundation\Providers\ArtisanServiceProvider::class,
+       /*
+     * Laravel Framework Service Providers...
+     */
     Illuminate\Auth\AuthServiceProvider::class,
     Illuminate\Broadcasting\BroadcastServiceProvider::class,
     Illuminate\Bus\BusServiceProvider::class,
@@ -151,13 +148,20 @@ return [
     Illuminate\Translation\TranslationServiceProvider::class,
     Illuminate\Validation\ValidationServiceProvider::class,
     Illuminate\View\ViewServiceProvider::class,
-<<<<<<< Updated upstream
-=======
-    // \Fruitcake\Cors\HandleCors::class,
+    Laravel\Passport\PassportServiceProvider::class,
 
 
->>>>>>> Stashed changes
+    /*
+     * Package Service Providers...
+     */
 
-        // ...existing code...
-    ],
+    /*
+     * Application Service Providers...
+     */
+    App\Providers\AppServiceProvider::class,
+    // App\Providers\AuthServiceProvider::class,
+    // App\Providers\BroadcastServiceProvider::class,
+    // App\Providers\EventServiceProvider::class,
+    App\Providers\RouteServiceProvider::class,
+    ]
 ];

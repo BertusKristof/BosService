@@ -6,6 +6,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 class Handler extends ExceptionHandler
 {
     /**
@@ -54,6 +55,8 @@ class Handler extends ExceptionHandler
         return parent::render($request, $exception);
     }
 =======
+=======
+>>>>>>> Stashed changes
 class Handler extends ExceptionHandler{
 public function render($request, Throwable $exception)
 {
@@ -75,5 +78,8 @@ private function getStatusCode(Throwable $exception): int
 
     return 500; 
 }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
