@@ -46,11 +46,11 @@ class RegisterController extends Controller
             'register_phone' => $request->register_phone,
             'register_password' => Hash::make($request->register_password),
         ]);
-        user_login::create([
-            'login_email' => $request->register_email,
-            'login_phone' => $request->register_phone,
-            'login_password' => $register_user->register_password
-        ]);
+        // user_login::create([
+        //     'login_email' => $request->register_email,
+        //     'login_phone' => $request->register_phone,
+        //     'login_password' => $register_user->register_password
+        // ]);
         appointments::create([
             'contact_name' => $request->first_name . '   ' . $request->last_name,
             'appointment_service' => null,
