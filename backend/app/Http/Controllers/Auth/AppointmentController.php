@@ -2,58 +2,67 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
-
-
+use Illuminate\Http\Request;
+use App\Models\appointments;
 
 class AppointmentController extends Controller
 {
-    // public function showAppointmentForm(){
-    //     return view('idopont');
-    // }
-    // public function appointment(Request $request){
-    //     $validate = Validator::make($request->all(),[
-    //         'contact_name' => 'required|string|max:200',
-    //         'appointment_service' => 'required|string|max:250',
-    //         'appointment_date' => 'required|date',
-    //         'appointment_time' => 'required|string',
-    //     ]);
-    //     if($validate->fails()){
-    //         return redirect('idopont')
-    //             ->withErrors($validate)
-    //             ->withInput();
-    //     }
-    // }
-    public function UpdateUserAppointment(Request $request){
-        $validate = Validator::make($request->all(),[
-            'appointment_service' => 'required|varchar|max:250',
-            'appointment_date' => 'required|date',
-            'appointment_time' => 'required|string',
+    public function updateAppointment(Request $request, $appointment_id)
+    { 
+        $validated = $request->validate([
+            'appointment_service' => 'nullable|string',
+            'appointment_time' => 'nullable|date_format:H:i',
+            'appointment_date' => 'nullable|date_format:Y-m-d',
         ]);
-
-        if($validate->fails()){
-            return response()->json(['error' => $validate->errors()], 400);
+    
+        $appointment = appointments::where('appointment_id', $appointment_id)
+                                  ->first();
+    
+        if (!$appointment) {
+            return response()->json(['error' => 'Appointment not found'], 404);
         }
-
-        $appointments = appointment::where('user_id', Auth::id())->first();
-        $appointments->update([
-            'appointment_service' => $request->appointment_service,
-            'appointment_date' => $request->appointment_date,
-            'appointment_time' => $request->appointment_time,
+    
+        \Log::info('Before update:', [
+            'appointment_service' => $appointment->appointment_service,
+            'appointment_time' => $appointment->appointment_time,
+            'appointment_date' => $appointment->appointment_date
         ]);
-        // if($validate->fails()){
-        //     return response()->json(['error' => $validate->errors()], 400);
-        // }
-        // DB::statment('CALL UpdateUserAppointment(?,?,?)',[
-        //     $request->appointment_date,
-        //     $request->appointment_time,  
-        //     $request->appointment_service,
-        // ]);ű
-        return response()->json(['success' => 'Sikeresen módosítottad az időpontodat.'], 200);
-    }
+        
+        $appointment->appointment_service = $validated['appointment_service'];
+        $appointment->appointment_time = $validated['appointment_time'];
+        $appointment->appointment_date = $validated['appointment_date'];
+        
+        $appointment->save();
+        
+     
+    
+        $updated = false;
+        if ($validated['appointment_service'] !== null) {
+            $appointment->appointment_service = $validated['appointment_service'];
+            $updated = true;
+        }
+        if ($validated['appointment_time'] !== null) {
+            $appointment->appointment_time = $validated['appointment_time'];
+            $updated = true;
+        }
+        if ($validated['appointment_date'] !== null) {
+            $appointment->appointment_date = $validated['appointment_date'];
+            $updated = true;
+        }
+    
+        if ($updated) {
+            $appointment->save();
+    
+            \Log::info('After update:', [
+                'appointment_service' => $appointment->appointment_service,
+                'appointment_time' => $appointment->appointment_time,
+                'appointment_date' => $appointment->appointment_date
+            ]);
+    
+            return response()->json(['message' => 'Appointment updated successfully', 'appointment' => $appointment]);
+        } else {
+            return response()->json(['message' => 'No updates were made'], 200);
+        }
+}
 }

@@ -7,7 +7,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-// use App\Models\PersonalAccessToken;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class user_login extends Authenticatable
 {

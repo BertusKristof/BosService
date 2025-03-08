@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if(!Schema::hasTable('appointments')){
-            Schema::create('appointments', function (Blueprint $table) {
-                $table->id('appointment_id'); 
-                $table->string('contact_name'); 
-                $table->date('appointment_date'); 
-                $table->time('appointment_time'); 
-                $table->string('contact_name');
-                $table->timestamps();
-            });
-        }
+        // if(!Schema::hasTable('appointments')){
+        //     Schema::create('appointments', function (Blueprint $table) {
+        //         $table->id('appointment_id'); 
+        //         $table->string('contact_name'); 
+        //         $table->date('appointment_date'); 
+        //         $table->time('appointment_time'); 
+        //         $table->string('contact_name');
+        //         $table->timestamps();
+        //     });
+        // }
 
         if(!Schema::hasTable('user_register')){
         Schema::create('user_register', function (Blueprint $table) {
@@ -53,7 +53,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('user_register');
         Schema::dropIfExists('user_login');
-        Schema::dropIfExists('appointments');
         // Schema::dropIfExists('sessions');
     }
 };

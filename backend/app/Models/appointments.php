@@ -9,9 +9,9 @@ class appointments extends Model
 {
     use HasFactory;
     protected $table = "appointments";
+    protected $primaryKey = 'appointment_id';
     public $timestamps = false;
     protected $fillable = [
-        'contact_name',
         'appointment_service',
         'appointment_date',
         'appointment_time',
