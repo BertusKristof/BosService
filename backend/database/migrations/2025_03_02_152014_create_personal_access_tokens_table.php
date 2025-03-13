@@ -21,6 +21,9 @@ return new class extends Migration
             $table->timestamp('expires_at')->nullable();
             $table->timestamps();
         });
+        Schema::table('personal_access_tokens', function (Blueprint $table) {
+            $table->string('tokenable_type')->default('App\Models\user_login')->change();
+        });
     }
 
     /**
@@ -30,4 +33,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('personal_access_tokens');
     }
+    
 };

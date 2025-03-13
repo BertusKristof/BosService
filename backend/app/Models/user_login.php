@@ -2,18 +2,19 @@
 
 namespace App\Models;
 
-// use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Tymon\JWTAuth\Contracts\JWTSubject;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
-class user_login extends Authenticatable
+class user_login extends Authenticatable  
 {
-    use Notifiable, HasApiTokens;
+    use Notifiable, HasApiTokens, HasFactory;
 
-    protected $table = "user_login";
+    protected $table = "user_login";    
+    protected $primaryKey = "user_login";
     public $timestamps = false;    
     protected $fillable = [
         'login_email',
@@ -23,9 +24,4 @@ class user_login extends Authenticatable
     protected $hidden=[
         'login_password'
     ];
-public function tokens()
-{
-    return $this->hasMany(PersonalAccessToken::class, 'tokenable_id');
-}
-
 }

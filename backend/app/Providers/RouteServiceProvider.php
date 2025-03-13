@@ -19,10 +19,11 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     protected function mapApiRoutes()
-    {
-        Route::prefix(self::API)
-             ->middleware('api')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/api.php'));
-    }
+{
+    Route::prefix('api') // <--- EZT KELL ELLENŐRIZNI!
+         ->middleware('api')
+         ->namespace($this->namespace)
+         ->group(base_path('routes/api.php'));
+}
+
 }

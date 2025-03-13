@@ -4,35 +4,42 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\user_login;
+use App\Models\appointments;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\Sanctum;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
     public function login(Request $request)
-    {
-        $credentials = $request->only('login_email', 'login_password');
+{
+    $credentials = $request->only('login_email', 'login_password');
 
-        $user = user_login::where('login_email', $credentials['login_email'])
-            ->orWhere('login_phone', $credentials['login_email'])
-            ->first();
+    $user = user_login::where('login_email', $request->login_email)->first();
 
-        if (!$user) {
-            return response()->json(['error' => 'User not found'], 404);
-        }
+    if ($user && Hash::check($request->login_password, $user->login_password)) {
 
-        if (Hash::check($credentials['login_password'], $user->login_password)) {
-            Auth::login($user);
+        $token = Str::random(64); 
 
-            $token = Sanctum::actingAs($user, ['*'])->plainTextToken;
+        \DB::table('personal_access_tokens')->insert([
+            'name' => 'autToken',
+            'token' => hash('sha256', $token), 
+            'abilities' => json_encode(['*']),
+            'expires_at' => null, 
+            'tokenable_id' => $user->register_id, 
+            'tokenable_type' => 'App\Models\user_register', 
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
 
-            return response()->json([
-                'token' => $token,
-                'user_name' => $user->first_name . ' ' . $user->last_name,
-            ], 200);
-        }
-
-        return response()->json(['error' => 'Unauthorized'], 401);
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+        ]);
     }
+    return response()->json(['error' => 'Invalid credentials'], 401);
+}
+
 }

@@ -8,13 +8,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
-use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class user_register extends Model
 {
     use HasFactory, HasApiTokens, Notifiable;
 
     protected $table = "user_register";
+    protected $primaryKey = "register_id";
     public $timestamps = false;    
     protected $fillable = [
         'first_name',
@@ -26,23 +26,5 @@ class user_register extends Model
 
     protected $hidden =[
         'register_password'
-    ];/**
-    * Get the identifier that will be stored in the JWT token.
-    *
-    * @return mixed
-    */
-   public function getJWTIdentifier()
-   {
-       return $this->getKey();
-   }
-
-   /**
-    * Get custom claims to be added to the JWT token.
-    *
-    * @return array
-    */
-   public function getJWTCustomClaims()
-   {
-       return [];
-   }
+    ];
 }

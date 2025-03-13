@@ -10,7 +10,7 @@ use App\Models\appointments;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
-
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -52,9 +52,28 @@ class RegisterController extends Controller
             'appointment_date' => null,
             'appointment_time' => null,
         ]);
-        return response()->json([
-            'message' => 'Sikeres regisztráció',
-            'user' => $register_user
-        ], 201);
+        $token = $register_user->createToken('YourAppName')->plainTextToken;
+
+        return response()->json(['token' => $token], 201);
     }
+    public function logout(Request $request)
+{
+    $tokenString = $request->bearerToken();
+
+    if (!$tokenString) {
+        return response()->json(['message' => 'No token provided'], 400);
+    }
+
+    $token = PersonalAccessToken::findToken($tokenString);
+    
+    if ($token) {
+        $token->delete(); 
+    } else {
+        return response()->json(['message' => 'Token not found'], 404);
+    }
+
+    return response()->json(['message' => 'Successfully logged out']);
+}
+
+
 }
