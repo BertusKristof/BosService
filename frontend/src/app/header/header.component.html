@@ -1,6 +1,5 @@
 <header>
   <div class="container">
-    <form action="/main" method="POST">
       <nav>
         <div>
           <div class="jobbos">
@@ -9,15 +8,19 @@
               <h1 class="balos">BosService</h1>
             </div>
             <div>
-              <a href="#about">Rólunk</a>
-              <a href="#services">Szolgáltatásaink</a>
-              <a href="#team">Csapatunk</a>
-              <a href="#contact">Elérhetőség</a>
+              <nav *ngIf="isLoggedIn">
+              <button (click)="onLogout()">Kijelentkezés</button>
+            </nav>
+            <a href="#about">Rólunk</a>
+            <a href="#services">Szolgáltatásaink</a>
+            <a href="#team">Csapatunk</a>
+            <a href="#contact">Elérhetőség</a>
+            <nav *ngIf="!isLoggedIn">
               <a href="/login">Bejelentkezés</a>
+            </nav>
             </div>
           </div>
         </div>
       </nav>
-    </form>
   </div>
 </header>

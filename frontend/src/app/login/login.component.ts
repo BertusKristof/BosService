@@ -12,23 +12,26 @@ import { Router } from '@angular/router';
   imports: [CommonModule, FormsModule]
 })
 export class LoginComponent {
-  loginData = { login_email: '', login_password: '' };
+  loginData = { login_phone: '', login_email: '', login_password: '' };
   modalData = { email: '', newPassword: '', confirmPassword: '' };
   errorMessage = '';
 
   constructor(private apiService: ApiService, private router: Router) {}
 
   login() {
-    this.apiService.login(this.loginData).subscribe(
-      response => {
+    this.apiService.login(this.loginData).subscribe({
+      next:(response) => {
         console.log('Login successful', response);
-        localStorage.setItem('authToken', response.token); // Store the token
-        this.router.navigate(['/']); // Redirect to the main page or another page
+        localStorage.setItem('token', response.token);  
+        this.router.navigate(['/']); 
       },
-      error => {
+      error: (error) => {
         this.errorMessage = 'Helytelen email/telefonszám vagy jelszó.';
+        if (error.error.errors) {
+          this.errorMessage = Object.values(error.error.errors).join(' ');
+        }
       }
-    );
+  });
   }
 
   showLoginModal() {

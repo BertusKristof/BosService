@@ -21,8 +21,8 @@ export class RegisterComponent {
     this.apiService.register(this.registerData).subscribe(
       response => {
         console.log('Registration successful', response);
-        localStorage.setItem('authToken', response.token); // Store the token
-        this.router.navigate(['/']); // Redirect to the main page or another page
+        localStorage.setItem('token', response.token); 
+        this.router.navigate(['/']); 
       },
       error => {
         this.errorMessage = 'Hiba történt a regisztráció során.';

@@ -1,47 +1,47 @@
 <main>
-    <section class="booking">
-      <h2>Foglaljon időpontot könnyedén!</h2>
-      <form (ngSubmit)="confirmBooking()">
-        <div class="booking-container">
-          <div class="service-select">
-            <h3>Válasszon szolgáltatást</h3>
-            <button type="button" (click)="selectService('Gumicsere')">Gumicsere</button>
-            <button type="button" (click)="selectService('Olajcsere')">Olajcsere</button>
-            <button type="button" (click)="selectService('Diagnosztika')">Diagnosztika</button>
-          </div>
-          <div class="calendar">
-            <h3>Válasszon dátumot</h3>
-            <input type="date" id="booking-date" [(ngModel)]="selectedDate" name="bookingDate">
-          </div>
-          <div class="time-slot">
-            <h3>Válasszon időpontot</h3>
-            <div id="time-slots">
-              <button *ngFor="let time of timeSlots" (click)="selectTime(time)">{{ time }}</button>
-            </div>
-          </div>
-          <div class="summary">
-            <h3>Foglalás összegzése</h3>
-            <p id="summary">{{ summary }}</p>
-            <button type="button" (click)="showCarModal()">Foglalás megerősítése</button>
+  <section class="booking">
+    <h2>Foglaljon időpontot könnyedén!</h2>
+    <form (ngSubmit)="confirmBooking()">
+      <div class="booking-container">
+        <div class="service-select">
+          <h3>Válasszon szolgáltatást</h3>
+          <button type="button" (click)="selectService('Gumicsere')">Gumicsere</button>
+          <button type="button" (click)="selectService('Olajcsere')">Olajcsere</button>
+          <button type="button" (click)="selectService('Diagnosztika')">Diagnosztika</button>
+        </div>
+        <div class="calendar">
+          <h3>Válasszon dátumot</h3>
+          <input type="date" id="booking-date" [(ngModel)]="selectedDate" name="bookingDate">
+        </div>
+        <div class="time-slot">
+          <h3>Válasszon időpontot</h3>
+          <div id="time-slots">
+            <button *ngFor="let time of timeSlots" (click)="selectTime(time)">{{ time }}</button>
           </div>
         </div>
-      </form>
-      <div id="car_myModal" class="car_modal">
-        <div class="car_modal-content">
-          <span class="car_close" (click)="closeCarModal()">&times;</span>
-          <form (ngSubmit)="submitCarModal()">
-            <h2>Autó adatok</h2>
-            <p>Rendszám tábla:</p>
-            <input type="text" [(ngModel)]="carData.licensePlate" name="licensePlate">
-            <p>Autó Márka:</p>
-            <input type="text" [(ngModel)]="carData.brand" name="brand">
-            <p>Autó Modell:</p>
-            <input type="text" [(ngModel)]="carData.model" name="model">
-            <p>Évjárat:</p>
-            <input type="text" [(ngModel)]="carData.year" name="year">
-            <button type="submit">Küldés</button>
-          </form>
+        <div class="summary">
+          <h3>Foglalás összegzése</h3>
+          <p id="summary">{{ summary }}</p>
+          <button type="submit">Foglalás megerősítése</button>
         </div>
       </div>
-    </section>
-  </main>
+    </form>
+    <div id="car_myModal" class="car_modal">
+      <div class="car_modal-content">
+        <span class="car_close" (click)="closeCarModal()">&times;</span>
+        <form (ngSubmit)="submitCarModal()">
+          <h2>Autó adatok</h2>
+          <p>Rendszám tábla:</p>
+          <input type="text" [(ngModel)]="carData.licensePlate" name="licensePlate">
+          <p>Autó Márka:</p>
+          <input type="text" [(ngModel)]="carData.brand" name="brand">
+          <p>Autó Modell:</p>
+          <input type="text" [(ngModel)]="carData.model" name="model">
+          <p>Évjárat:</p>
+          <input type="text" [(ngModel)]="carData.year" name="year">
+          <button type="submit">Küldés</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
