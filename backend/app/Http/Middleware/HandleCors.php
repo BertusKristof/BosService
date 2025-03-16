@@ -15,11 +15,8 @@ class HandleCors
      */
     public function handle(Request $request, Closure $next)
     {
-        // Az engedélyezett domainek listája
         $allowedOrigins = ['http://localhost:4200'];
-        // A kéréshez tartozó "Origin" cím ellenőrzése
         if (in_array($request->header('Origin'), $allowedOrigins)) {
-            // CORS fejlécek hozzáadása, ha a "Origin" cím engedélyezett
             return $next($request)
                 ->header('Access-Control-Allow-Origin', $request->header('Origin'))
                 ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')

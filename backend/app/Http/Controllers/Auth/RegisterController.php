@@ -56,24 +56,5 @@ class RegisterController extends Controller
 
         return response()->json(['token' => $token], 201);
     }
-    public function logout(Request $request)
-{
-    $tokenString = $request->bearerToken();
-
-    if (!$tokenString) {
-        return response()->json(['message' => 'No token provided'], 400);
-    }
-
-    $token = PersonalAccessToken::findToken($tokenString);
-    
-    if ($token) {
-        $token->delete(); 
-    } else {
-        return response()->json(['message' => 'Token not found'], 404);
-    }
-
-    return response()->json(['message' => 'Successfully logged out']);
-}
-
 
 }

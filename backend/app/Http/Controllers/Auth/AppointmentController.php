@@ -8,43 +8,27 @@ use App\Models\appointments;
 
 class AppointmentController extends Controller
 {
-    public function updateAppointment(Request $request, $appointment_id)
+    public function manageAppointment(Request $request, $appointment_id)
     { 
-        $appointment = appointments::where('appointment_id', $id)->first();
+        $userId = auth()->id();
+        $existAppointment = appointments::where('id', $userId)->first();
+        
+        if($existAppointment){
+            $existAppointment->appointment_service = $request->appointment_service;
+            $existAppointment->appointment_time = $request->appointment_time;
+            $existAppointment->appointment_date = $request->appointment_date;
+            $existAppointment->save();
 
-    if (!$appointment) {
-        return response()->json(['message' => 'Appointment not found'], 404);
+            return response()->json(['message' => 'Appointment updated successfully', 'appointment' => $existAppointment], 200);
+        }else{
+            $newAppointment = appointments::create([
+                'id' => $userId,
+                'appointment_service' => $appointment_service,
+                'appointment_time' => $appointment_time,
+                'appointment_date' => $appointment_date,
+            ]);
+
+            return response()->json(['message' => 'Appointment created successfully', 'appointment' => $newAppointment], 201);
+        }
     }
-
-    $appointment->appointment_service = $request->appointment_service;
-    $appointment->appointment_time = $request->appointment_time;
-    $appointment->appointment_date = $request->appointment_date;
-
-    $appointment->save();
-
-    return response()->json([
-        'message' => 'Appointment updated successfully',
-        'appointment' => $appointment
-    ], 200);
-}
-public function store(Request $request)
-{
-    $validated = $request->validate([
-        'appointment_service' => 'required|string',
-        'appointment_time' => 'required',
-        'appointment_date' => 'required|date',
-    ]);
-
-    $appointment = appointments::create([
-        'appointment_service' => $validated['appointment_service'],
-        'appointment_time' => $validated['appointment_time'],
-        'appointment_date' => $validated['appointment_date']
-    ]);
-
-    return response()->json([
-        'message' => 'Appointment created successfully',
-        'appointment' => $appointment
-    ], 201);
-}
-
 }
