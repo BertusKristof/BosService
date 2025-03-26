@@ -1,0 +1,106 @@
+/* Navigáció */
+header {
+    background-color: #d32f2f; /* Piros főszín */
+    color: white;
+    padding: 10px 0; /* Kisebb padding */
+    width: 100%; /* Teljes szélesség */
+    position: fixed; /* Fix fejléc */
+    top: 0;
+    z-index: 1000; /* Biztosítja, hogy a fejléc mindig legfelül legyen */
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Teljes szélesség */
+    max-width: 1200px; /* Max szélesség a tartalomhoz */
+    margin: 0 auto; /* Középre igazítás */
+    padding: 0 20px; /* Oldalsó padding */
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px; /* Kisebb margó */
+    font-size: 16px; /* Kisebb betűméret */
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #ffeb3b; 
+}
+
+nav .login-link {
+    background-color: #ff5722; 
+    padding: 8px 16px; /* Kisebb padding */
+    border-radius: 5px;
+    font-size: 16px; /* Kisebb betűméret */
+}
+
+nav .login-link:hover {
+    background-color: #d32f2f;
+}
+
+.okey {
+    display: flex;
+    align-items: center;
+    margin-right: auto; /* Balra tolja a logót és a szöveget */
+}
+
+.logo {
+    height: 75px; /* Logo mérete marad 75px */
+    margin-right: 10px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 10px; /* Kisebb térköz */
+    margin-left: auto; /* Jobbra tolja a navigációs linkeket */
+    align-items: center;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    margin-left: 20px; /* Távolság a linkektől */
+    z-index: 1001; /* Biztosítja, hogy a hamburger ikon mindig legfelül legyen */
+}
+
+.hamburger span {
+    height: 3px;
+    width: 25px;
+    background: white;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+/* Reszponzív stílusok */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #d32f2f; /* Háttérszín a mobil menühöz */
+        position: absolute;
+        top: 95px; /* Távolság a fejléc tetejétől (logo magassága + padding) */
+        left: 0;
+        padding: 10px 0; /* Kisebb padding */
+        align-items: center; /* Középre igazítja a navigációs linkeket */
+        z-index: 1000; /* Biztosítja, hogy a mobil menü a tartalom felett legyen */
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: flex;
+        margin-top: 5px; /* Kisebb margó */
+    }
+
+    .hamburger span {
+        width: 25px; /* Kisebb hamburger ikon */
+    }
+}

@@ -1,0 +1,68 @@
+.register button {
+    justify-content: center;
+    text-align: center;
+    width: 400px;
+    padding: 12px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+.register {    
+    background-color: white;
+}
+
+.aclass {
+    background-color: white;
+}
+
+.register2 {
+    background-color: #fff;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.register2 h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: #d32f2f;
+}
+
+.register2 form {
+    display: inline-block;
+    text-align: left;
+    max-width: 400px;
+    width: 100%;
+}
+
+.register2 label {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.register2 input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.register2 button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.register2 button:hover {
+    background-color: #d32f2f;
+}

@@ -1,19 +1,20 @@
+// app.module.ts
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-// import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common'; 
+import { RouterModule } from '@angular/router'; // Fontos a RouterModule importálása
 
-// import { AppRoutingModule } from './app.routes';
-import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { IdopontComponent } from './idopont/idopont.component';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent, // AppComponent a declarations-be kerül
     HeaderComponent,
     MainComponent,
     RegisterComponent,
@@ -22,9 +23,9 @@ import { IdopontComponent } from './idopont/idopont.component';
   ],
   imports: [
     BrowserModule,
-    // AppRoutingModule,
     FormsModule,
-    // HttpClientModule
+    CommonModule,
+    RouterModule // RouterModule importálása a router-outlet miatt
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,111 @@
+/* Fő struktúra */
+main {
+  padding-top: 100px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center; /* Horizontális középre igazítás */
+  align-items: flex-start; /* Vertikálisan felülről */
+}
+
+/* Booking section */
+section.booking {
+  padding: 30px;
+  width: 100%;
+  max-width: 800px; /* Maximális szélesség megtartva */
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  margin: 0 20px 100px; /* Oldalsó margó + alsó margó */
+}
+
+.booking h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-size: 28px;
+}
+
+.booking-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.service-select, .calendar, .time-slot, .summary {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.service-select {
+  grid-column: 1 / -1;
+}
+
+/* Modal stílusok */
+.car_modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 150px;
+  z-index: 1000;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.car_modal-content {
+  background: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  padding: 25px;
+  position: relative;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Reszponzív módosítások */
+@media (max-width: 768px) {
+  main {
+    padding-top: 60px;
+  }
+  
+  section.booking {
+    margin: 0 15px 80px;
+    padding: 20px;
+  }
+  
+  .car_modal {
+    padding-top: 120px;
+  }
+  
+  .booking-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding-top: 40px;
+  }
+  
+  section.booking {
+    margin: 0 10px 60px;
+    padding: 15px;
+  }
+  
+  .car_modal {
+    padding-top: 80px;
+  }
+  
+  #time-slots button {
+    min-width: 100%;
+  }
+}
