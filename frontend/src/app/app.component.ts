@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { HeaderComponent } from './header/header.component'; // Importáljuk a HeaderComponent-et
+import { HeaderComponent } from './header/header.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterModule, HeaderComponent], // Hozzáadjuk a HeaderComponent-et az imports-hoz
+  standalone: true,  // standalone beállítás
+  imports: [HeaderComponent, RouterOutlet],  // itt importáljuk a használt komponenseket
   template: `
     <app-header></app-header>
     <router-outlet></router-outlet>
