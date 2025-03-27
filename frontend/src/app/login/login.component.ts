@@ -24,7 +24,7 @@ export class LoginComponent {
   };
   
   errorMessage = '';
-  showPasswordModal = false;
+  modalOpen = false; // Átnevezve a showPasswordModal-ról
 
   constructor(
     private apiService: ApiService,
@@ -50,18 +50,18 @@ export class LoginComponent {
   }
 
   // Jelszóemlékeztető modal megnyitása
-  openPasswordModal(): void {
-    this.showPasswordModal = true;
+  showLoginModal(): void {
+    this.modalOpen = true;
   }
 
   // Modal bezárása
-  closePasswordModal(): void {
-    this.showPasswordModal = false;
+  closeLoginModal(): void {
+    this.modalOpen = false;
     this.resetModal();
   }
 
   // Jelszóváltoztatás elküldése
-  submitPasswordModal(): void {
+  submitLoginModal(): void {
     if (this.modalData.newPassword !== this.modalData.confirmPassword) {
       this.errorMessage = 'A jelszavak nem egyeznek!';
       return;
@@ -70,7 +70,7 @@ export class LoginComponent {
     // TODO: Implementáld a jelszóváltoztatási logikát
     console.log('Jelszó változtatás kérés:', this.modalData);
     alert('Jelszóváltoztatási kérés elküldve!');
-    this.closePasswordModal();
+    this.closeLoginModal();
   }
 
   // Hibakezelés

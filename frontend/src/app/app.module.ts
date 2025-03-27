@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
+/*import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component'; // Standalone komponens importálása
+import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
 import { RegisterComponent } from './register/register.component';
@@ -17,20 +17,18 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    MainComponent,
-    RegisterComponent,
-    IdopontComponent,
-    LoginComponent
-  ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(routes),
-    AppComponent // Standalone komponens importálása
+    AppComponent,
+    HeaderComponent,
+    MainComponent,
+    RegisterComponent,
+    IdopontComponent,
+    LoginComponent 
   ],
   providers: [],
   bootstrap: [AppComponent] // Az AppComponent továbbra is a bootstrap tömbben marad
 })
-export class AppModule { }
+export class AppModule { }*/

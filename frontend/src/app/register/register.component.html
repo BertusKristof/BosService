@@ -1,77 +1,38 @@
-<main class="register-container">
-  <section class="register-form-section">
-    <h2>Regisztráció</h2>
-    
-    <form (ngSubmit)="register()" class="registration-form">
-      <div class="form-row">
+<main class="registration-container">
+  <section class="register-section">
+    <div class="register-form">
+      <h2>Regisztráció</h2>
+      <form (ngSubmit)="register()">
         <div class="form-group">
-          <label for="last_name">Vezetéknév</label>
-          <input type="text" id="last_name" 
-                 [(ngModel)]="registerData.last_name" 
-                 name="last_name" 
-                 required
-                 placeholder="Kovács">
+          <label for="name">Teljes név</label>
+          <input type="text" id="name" [(ngModel)]="registerData.name" name="name" required>
         </div>
-        
+
         <div class="form-group">
-          <label for="first_name">Keresztnév</label>
-          <input type="text" id="first_name" 
-                 [(ngModel)]="registerData.first_name" 
-                 name="first_name" 
-                 required
-                 placeholder="János">
+          <label for="email">Email cím</label>
+          <input type="email" id="email" [(ngModel)]="registerData.email" name="email" required>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="register_email">Email cím</label>
-        <input type="email" id="register_email" 
-               [(ngModel)]="registerData.register_email" 
-               name="register_email" 
-               required
-               placeholder="pelda@email.com">
-      </div>
-
-      <div class="form-group">
-        <label for="register_phone">Telefonszám</label>
-        <input type="tel" id="register_phone" 
-               [(ngModel)]="registerData.register_phone" 
-               name="register_phone" 
-               required
-               placeholder="+36 20 123 4567">
-      </div>
-
-      <div class="form-row">
         <div class="form-group">
-          <label for="register_password">Jelszó</label>
-          <input type="password" id="register_password" 
-                 [(ngModel)]="registerData.register_password" 
-                 name="register_password" 
-                 required
-                 placeholder="Legalább 8 karakter">
+          <label for="password">Jelszó</label>
+          <input type="password" id="password" [(ngModel)]="registerData.password" name="password" required>
         </div>
-        
+
         <div class="form-group">
-          <label for="password_confirmation">Jelszó megerősítése</label>
-          <input type="password" id="password_confirmation" 
-                 [(ngModel)]="registerData.password_confirmation" 
-                 name="password_confirmation" 
-                 required
-                 placeholder="Jelszó mégegyszer">
+          <label for="confirmPassword">Jelszó megerősítése</label>
+          <input type="password" id="confirmPassword" [(ngModel)]="registerData.confirmPassword" name="confirmPassword" required>
         </div>
+
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+
+        <button type="submit" class="register-button">Regisztráció</button>
+      </form>
+
+      <div class="login-prompt">
+        <p>Már van fiókja? <a routerLink="/login">Bejelentkezés</a></p>
       </div>
-
-      <div *ngIf="errorMessage" class="error-message">
-        {{ errorMessage }}
-      </div>
-
-      <button type="submit" class="submit-button" [disabled]="isSubmitting">
-        {{ isSubmitting ? 'Folyamatban...' : 'Regisztráció' }}
-      </button>
-    </form>
-
-    <div class="login-redirect">
-      <p>Már van fiókja? <a routerLink="/login">Jelentkezzen be</a></p>
     </div>
   </section>
 </main>

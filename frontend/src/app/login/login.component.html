@@ -1,84 +1,51 @@
-<main class="container">
-  <section class="login-section">
+<section class="login-section">
+  <div class="login-container">
     <h2>Bejelentkezés</h2>
-    
-    <!-- Bejelentkezési űrlap -->
-    <form (ngSubmit)="login()" class="login-form">
+    <form (ngSubmit)="login()">
       <div class="form-group">
-        <label for="login_email">Email cím</label>
-        <input type="email" id="login_email" 
-               [(ngModel)]="loginData.login_email" 
-               name="login_email" 
-               required
-               placeholder="Add meg az email címed">
+        <label for="login_email">Felhasználónév</label>
+        <input type="text" id="login_email" [(ngModel)]="loginData.login_email" name="login_email" required>
       </div>
       
       <div class="form-group">
         <label for="login_password">Jelszó</label>
-        <input type="password" id="login_password" 
-               [(ngModel)]="loginData.login_password" 
-               name="login_password" 
-               required
-               placeholder="Add meg a jelszavad">
+        <input type="password" id="login_password" [(ngModel)]="loginData.login_password" name="login_password" required>
       </div>
       
       <div *ngIf="errorMessage" class="error-message">
         {{ errorMessage }}
       </div>
       
+      <a class="forgot-password" (click)="showLoginModal()">Elfelejtette a jelszavát?</a>
       <button type="submit" class="login-button">Bejelentkezés</button>
-      
-      <a class="forgot-password" (click)="openPasswordModal()">
-        Elfelejtette a jelszavát?
-      </a>
     </form>
-  </section>
-  
-  <!-- Regisztrációs szekció -->
-  <section class="register-section">
-    <p>Még nincs fiókja?</p>
-    <a routerLink="/register" class="register-link">
-      Regisztráció
-    </a>
-  </section>
-  
-  <!-- Jelszóemlékeztető modal -->
-  <div *ngIf="showPasswordModal" class="password-modal">
+    
+    <div class="register-prompt">
+      <p>Még nincs fiókja?</p>
+      <a href="/register" class="register-link">Regisztráció</a>
+    </div>
+  </div>
+
+  <!-- Jelszóváltoztatás modal -->
+  <div id="login_myModal" class="login-modal" [class.active]="modalOpen">
     <div class="modal-content">
-      <span class="close-button" (click)="closePasswordModal()">&times;</span>
-      
-      <h2>Jelszó visszaállítás</h2>
-      
-      <form (ngSubmit)="submitPasswordModal()" class="password-form">
+      <span class="close" (click)="closeLoginModal()">&times;</span>
+      <h2>Jelszó változtatás</h2>
+      <form (ngSubmit)="submitLoginModal()">
         <div class="form-group">
-          <label for="reset_email">Email cím</label>
-          <input type="email" id="reset_email" 
-                 [(ngModel)]="modalData.email" 
-                 name="email"
-                 required
-                 placeholder="Add meg a regisztrált email címed">
+          <label>Email cím:</label>
+          <input type="text" [(ngModel)]="modalData.email" name="email">
         </div>
-        
         <div class="form-group">
-          <label for="new_password">Új jelszó</label>
-          <input type="password" id="new_password" 
-                 [(ngModel)]="modalData.newPassword" 
-                 name="newPassword"
-                 required
-                 placeholder="Új jelszó">
+          <label>Új jelszó:</label>
+          <input type="password" [(ngModel)]="modalData.newPassword" name="newPassword">
         </div>
-        
         <div class="form-group">
-          <label for="confirm_password">Jelszó megerősítése</label>
-          <input type="password" id="confirm_password" 
-                 [(ngModel)]="modalData.confirmPassword" 
-                 name="confirmPassword"
-                 required
-                 placeholder="Jelszó mégegyszer">
+          <label>Új jelszó megerősítés:</label>
+          <input type="password" [(ngModel)]="modalData.confirmPassword" name="confirmPassword">
         </div>
-        
-        <button type="submit" class="submit-button">Jelszó visszaállítása</button>
+        <button type="submit" class="modal-button">Küldés</button>
       </form>
     </div>
   </div>
-</main>
+</section>

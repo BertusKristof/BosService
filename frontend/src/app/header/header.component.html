@@ -1,32 +1,23 @@
 <header>
   <div class="container">
     <nav>
-      <div class="jobbos">
-        <div class="okey">
-          <img src="assets/kepek/logo2.0.png" class="logo" alt="BosService logo">
-          <h1 class="balos">BosService</h1>
-        </div>
-        
-        <div class="nav-links" [class.active]="menuActive">
-          <a routerLink="/" fragment="about" (click)="menuActive = false">Rólunk</a>
-          <a routerLink="/" fragment="services" (click)="menuActive = false">Szolgáltatásaink</a>
-          <a routerLink="/" fragment="team" (click)="menuActive = false">Csapatunk</a>
-          <a routerLink="/" fragment="contact" (click)="menuActive = false">Elérhetőség</a>
-          
-          <ng-container *ngIf="!isLoggedIn; else logoutSection">
-            <a routerLink="/login" class="login-link" (click)="menuActive = false">Bejelentkezés</a>
-          </ng-container>
-          
-          <ng-template #logoutSection>
-            <button type="button" (click)="logout()">Kijelentkezés</button>
-          </ng-template>
-        </div>
-        
-        <div class="hamburger" (click)="toggleMenu()" aria-label="Menü megnyitása">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+      <div class="logo-container">
+        <img src="../assets/kepek/logo2.0.png" class="logo" alt="BosService Logo">
+        <h1>BosService</h1>
+      </div>
+      
+      <div class="nav-links" [class.active]="menuActive">
+        <a href="#about">Rólunk</a>
+        <a href="#services">Szolgáltatásaink</a>
+        <a href="#team">Csapatunk</a>
+        <a href="#contact">Elérhetőség</a>
+        <a href="/login" class="login-link">Bejelentkezés</a>
+      </div>
+      
+      <div class="hamburger" (click)="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </nav>
   </div>

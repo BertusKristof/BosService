@@ -1,68 +1,162 @@
-.register button {
+/* Main container with lowered position */
+.registration-container {
+    display: flex;
     justify-content: center;
-    text-align: center;
-    width: 400px;
-    padding: 12px;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2em;
-    cursor: pointer;
-    margin-left: 15px;
-}
-
-.register {    
-    background-color: white;
-}
-
-.aclass {
-    background-color: white;
-}
-
-.register2 {
-    background-color: #fff;
-    padding: 50px 20px;
-    text-align: center;
-}
-
-.register2 h2 {
-    font-size: 2em;
-    margin-bottom: 30px;
+    align-items: flex-start;
+    min-height: calc(100vh - 80px);
+    padding-top: 120px; /* Increased top padding */
+    padding-bottom: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Registration form styling */
+  .register-section {
+    width: 100%;
+    max-width: 500px;
+    margin-top: 40px;
+  }
+  
+  .register-form {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .register-form h2 {
     color: #d32f2f;
-}
-
-.register2 form {
-    display: inline-block;
-    text-align: left;
-    max-width: 400px;
-    width: 100%;
-}
-
-.register2 label {
-    font-size: 1.1em;
-    margin-bottom: 10px;
-    display: block;
-}
-
-.register2 input {
-    width: 100%;
-    padding: 10px;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+  }
+  
+  .form-group {
     margin-bottom: 20px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-.register2 button {
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .form-group input {
     width: 100%;
-    padding: 12px;
-    background-color: #ff5722;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+  }
+  
+  .form-group input:focus {
+    border-color: #d32f2f;
+    outline: none;
+  }
+  
+  .error-message {
+    color: #d32f2f;
+    margin: 15px 0;
+    text-align: center;
+  }
+  
+  .register-button {
+    width: 100%;
+    padding: 14px;
+    background-color: #d32f2f;
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 1.2em;
+    font-size: 1.1rem;
     cursor: pointer;
-}
-
-.register2 button:hover {
-    background-color: #d32f2f;
-}
+    transition: background-color 0.3s;
+    margin-top: 10px;
+  }
+  
+  .register-button:hover {
+    background-color: #b71c1c;
+  }
+  
+  .login-prompt {
+    text-align: center;
+    margin-top: 25px;
+    color: #555;
+  }
+  
+  .login-prompt a {
+    color: #d32f2f;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  
+  .login-prompt a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive styles with extra lowered position */
+  @media (max-width: 992px) {
+    .registration-container {
+      padding-top: 100px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .registration-container {
+      padding-top: 80px;
+      min-height: calc(100vh - 60px);
+    }
+    
+    .register-section {
+      margin-top: 30px;
+    }
+    
+    .register-form {
+      padding: 30px;
+    }
+    
+    .register-form h2 {
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .registration-container {
+      padding-top: 70px;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    
+    .register-section {
+      margin-top: 25px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .registration-container {
+      padding-top: 60px;
+      min-height: calc(100vh - 40px);
+    }
+    
+    .register-form {
+      padding: 25px 20px;
+    }
+    
+    .register-form h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    .register-button {
+      margin-top: 15px;
+      padding: 12px;
+      font-size: 1rem;
+    }
+  }

@@ -1,106 +1,118 @@
-/* Navigáció */
+/* Fejléc alapok */
 header {
-    background-color: #d32f2f; /* Piros főszín */
+    background-color: #d32f2f;
     color: white;
-    padding: 10px 0; /* Kisebb padding */
-    width: 100%; /* Teljes szélesség */
-    position: fixed; /* Fix fejléc */
+    padding: 10px 0;
+    width: 100%;
+    position: fixed;
     top: 0;
-    z-index: 1000; /* Biztosítja, hogy a fejléc mindig legfelül legyen */
-}
-
-nav {
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  /* Navigáció */
+  nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%; /* Teljes szélesség */
-    max-width: 1200px; /* Max szélesség a tartalomhoz */
-    margin: 0 auto; /* Középre igazítás */
-    padding: 0 20px; /* Oldalsó padding */
-}
-
-nav a {
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .logo {
+    height: 75px;
+    width: auto;
+  }
+  
+  nav h1 {
+    font-size: 1.8rem;
+    margin: 0;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .nav-links a {
     color: white;
     text-decoration: none;
-    margin: 0 10px; /* Kisebb margó */
-    font-size: 16px; /* Kisebb betűméret */
-    transition: color 0.3s ease;
-}
-
-nav a:hover {
-    color: #ffeb3b; 
-}
-
-nav .login-link {
-    background-color: #ff5722; 
-    padding: 8px 16px; /* Kisebb padding */
+    font-size: 1.1rem;
+    transition: color 0.3s;
+  }
+  
+  .nav-links a:hover {
+    color: #ffeb3b;
+  }
+  
+  .login-link {
+    background-color: #ff5722;
+    padding: 8px 16px;
     border-radius: 5px;
-    font-size: 16px; /* Kisebb betűméret */
-}
-
-nav .login-link:hover {
+  }
+  
+  .login-link:hover {
     background-color: #d32f2f;
-}
-
-.okey {
-    display: flex;
-    align-items: center;
-    margin-right: auto; /* Balra tolja a logót és a szöveget */
-}
-
-.logo {
-    height: 75px; /* Logo mérete marad 75px */
-    margin-right: 10px;
-}
-
-.nav-links {
-    display: flex;
-    gap: 10px; /* Kisebb térköz */
-    margin-left: auto; /* Jobbra tolja a navigációs linkeket */
-    align-items: center;
-}
-
-.hamburger {
+  }
+  
+  /* Hamburger menü */
+  .hamburger {
     display: none;
     flex-direction: column;
     cursor: pointer;
-    margin-left: 20px; /* Távolság a linkektől */
-    z-index: 1001; /* Biztosítja, hogy a hamburger ikon mindig legfelül legyen */
-}
-
-.hamburger span {
-    height: 3px;
+    z-index: 1001;
+  }
+  
+  .hamburger span {
     width: 25px;
+    height: 3px;
     background: white;
-    margin: 4px 0;
+    margin: 3px 0;
     transition: 0.4s;
-}
-
-/* Reszponzív stílusok */
-@media (max-width: 768px) {
+  }
+  
+  /* Reszponzív stílusok */
+  @media (max-width: 768px) {
     .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: #d32f2f; /* Háttérszín a mobil menühöz */
-        position: absolute;
-        top: 95px; /* Távolság a fejléc tetejétől (logo magassága + padding) */
-        left: 0;
-        padding: 10px 0; /* Kisebb padding */
-        align-items: center; /* Középre igazítja a navigációs linkeket */
-        z-index: 1000; /* Biztosítja, hogy a mobil menü a tartalom felett legyen */
+      position: fixed;
+      top: 95px; /* Fejléc magassága */
+      left: 0;
+      width: 100%;
+      background-color: #d32f2f;
+      flex-direction: column;
+      gap: 15px;
+      padding: 20px 0;
+      clip-path: circle(0% at 100% 0);
+      transition: clip-path 0.4s ease;
     }
-
+  
     .nav-links.active {
-        display: flex;
+      clip-path: circle(150% at 100% 0);
     }
-
+  
     .hamburger {
-        display: flex;
-        margin-top: 5px; /* Kisebb margó */
+      display: flex;
     }
-
-    .hamburger span {
-        width: 25px; /* Kisebb hamburger ikon */
+  
+    /* Animáció a hamburger ikonhoz */
+    .nav-links.active ~ .hamburger span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
     }
-}
+    .nav-links.active ~ .hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+    .nav-links.active ~ .hamburger span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+  }

@@ -4,8 +4,8 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true,  // standalone beállítás
-  imports: [HeaderComponent, RouterOutlet],  // itt importáljuk a használt komponenseket
+  standalone: true, 
+  imports: [HeaderComponent, RouterOutlet],  
   template: `
     <app-header></app-header>
     <router-outlet></router-outlet>
