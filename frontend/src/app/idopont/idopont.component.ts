@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../api.service';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-idopont',
@@ -10,16 +12,19 @@ import { ApiService } from '../api.service';
   styleUrls: ['./idopont.component.css'],
   imports: [CommonModule, FormsModule]
 })
-export class IdopontComponent {
-  selectedService: string | null = null;
-  selectedDate: string | null = null;
-  selectedTime: string | null = null;
+export class IdopontComponent implements OnInit {
+  appointmentData = {appointment_service: '', appointment_date: '', appointment_time: ''};
+  selectedService: string = '';
+  selectedDate: string  = '';
+  selectedTime: string = '';
   summary: string = '';
   timeSlots: string[] = ['08:00', '09:00', '10:00', '11:00', '13:00', '14:00', '15:00', '16:00'];
   carData = { licensePlate: '', brand: '', model: '', year: '' };
+  appointment_id: string | null = null;
+  errorMessage = '';
 
-  constructor(private apiService: ApiService) {}
-
+  constructor(private apiService: ApiService, private router: Router, private http: HttpClient) {}
+  
   selectService(service: string) {
     this.selectedService = service;
     this.updateSummary();
@@ -32,8 +37,8 @@ export class IdopontComponent {
 
   updateSummary() {
     this.summary = `
-      Szolgáltatás: ${this.selectedService || 'Nincs kiválasztva'}<br>
-      Dátum: ${this.selectedDate || 'Nincs kiválasztva'}<br>
+      Szolgáltatás: ${this.selectedService || 'Nincs kiválasztva'}
+      Dátum: ${this.selectedDate || 'Nincs kiválasztva'}
       Időpont: ${this.selectedTime || 'Nincs kiválasztva'}
     `;
   }
@@ -56,27 +61,36 @@ export class IdopontComponent {
     alert('Autó adatok: ' + JSON.stringify(this.carData));
     this.closeCarModal();
   }
+  
+  ngOnInit(): void {
+    this.apiService.getAppointment().subscribe(
+      (appointment) => {
+        if(appointment){
+          this.appointmentData = appointment;
+        }
+      },
+      () => {
+        console.log('No existing appointment found');
+      }
+    )
+  }
 
   confirmBooking() {
-    const bookingData = {
-      service: this.selectedService,
-      date: this.selectedDate,
-      time: this.selectedTime,
-      car: this.carData
-    };
-    const token = localStorage.getItem('authToken'); // Retrieve the token
-    if (token) {
-      this.apiService.updateUserAppointment(token, bookingData).subscribe(
-        response => {
-          console.log('Booking confirmed', response);
-          // Handle successful booking
-        },
-        error => {
-          console.error('Error confirming booking', error);
-        }
-      );
-    } else {
-      console.error('No authentication token found');
-    }
+    this.appointmentData.appointment_service = this.selectedService;
+    this.appointmentData.appointment_time = this.selectedTime;
+    this.appointmentData.appointment_date = this.selectedDate;
+
+    this.apiService.bookOrUpdateAppointment(this.appointmentData).subscribe(
+      (response) => {
+        this.summary = "Időpont foglalás sikeres";
+        console.log('Appointment saved', response);
+        this.router.navigate(['/']);
+      },
+      (error) => {
+        this.errorMessage = 'Hiba történt az időpont foglalás során';
+        console.log('Error: ', error);
+      }
+    )
   }
-}
+  
+  }
