@@ -8,27 +8,60 @@ use App\Models\appointments;
 
 class AppointmentController extends Controller
 {
-    public function manageAppointment(Request $request, $appointment_id)
-    { 
-        $userId = auth()->id();
-        $existAppointment = appointments::where('id', $userId)->first();
-        
-        if($existAppointment){
-            $existAppointment->appointment_service = $request->appointment_service;
-            $existAppointment->appointment_time = $request->appointment_time;
-            $existAppointment->appointment_date = $request->appointment_date;
-            $existAppointment->save();
+    public function manageAppointment(Request $request, $id)
+    {
+    $data = $request->all();
 
-            return response()->json(['message' => 'Appointment updated successfully', 'appointment' => $existAppointment], 200);
-        }else{
-            $newAppointment = appointments::create([
-                'id' => $userId,
-                'appointment_service' => $appointment_service,
-                'appointment_time' => $appointment_time,
-                'appointment_date' => $appointment_date,
-            ]);
+    $appointment = appointments::where('appointment_id', $id)->first();
 
-            return response()->json(['message' => 'Appointment created successfully', 'appointment' => $newAppointment], 201);
+    $updateData = [
+        'appointment_service' => $data['service'] ?? null,
+        'appointment_time' => $data['time'] ?? null,
+        'appointment_date' => $data['date'] ?? null,
+    ];
+
+    if (isset($data['contact_name'])) {
+        $updateData['contact_name'] = $data['contact_name'];
+    }
+
+    if ($appointment) {
+        if (
+            empty($updateData['appointment_service']) &&
+            empty($updateData['appointment_time']) &&
+            empty($updateData['appointment_date'])
+        ) {
+            return response()->json(['message' => 'Nincs változás, üres adatokkal nem frissítünk'], 200);
         }
+
+        $appointment->update($updateData);
+        return response()->json(['message' => 'Appointment updated', 'appointment' => $appointment], 200);
+    }
+
+    $updateData['appointment_id'] = $id;
+    $appointment = appointments::create($updateData);
+    return response()->json(['message' => 'Appointment created', 'appointment' => $appointment], 201);
+
+    }
+
+
+    public function getAppointment($id)
+    {
+        $appointment = appointments::where('appointment_id', $id)->first();
+
+        if ($appointment) {
+            return response()->json($appointment);
+        } else {
+            return response()->json(['message' => 'Nincs foglalás'], 404);
+        }
+    }
+    public function getBookedTimes(Request $request)
+    {
+        $date = $request->input('date');
+
+        $bookedTimes = appointments::where('appointment_date', $date)
+            ->whereNotNull('appointment_time')
+            ->pluck('appointment_time');
+
+        return response()->json($bookedTimes);
     }
 }

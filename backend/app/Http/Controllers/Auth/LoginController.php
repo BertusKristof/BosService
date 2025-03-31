@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\user_login;
-use App\Models\appointments;
+// use App\Models\appointments;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\Sanctum;
@@ -17,9 +17,9 @@ class LoginController extends Controller
 {
     $credentials = $request->only('login_email', 'login_password');
 
-    $user = user_login::where('login_email', $request->login_email)->first();
+    $login_user = user_login::where('login_email', $request->login_email)->first();
 
-    if ($user && Hash::check($request->login_password, $user->login_password)) {
+    if ($login_user && Hash::check($request->login_password, $login_user->login_password)) {
 
         $token = Str::random(64); 
 
@@ -28,7 +28,7 @@ class LoginController extends Controller
             'token' => hash('sha256', $token), 
             'abilities' => json_encode(['*']),
             'expires_at' => null, 
-            'tokenable_id' => $user->register_id, 
+            'tokenable_id' => $login_user->register_id, 
             'tokenable_type' => 'App\Models\user_register', 
             'created_at' => now(),
             'updated_at' => now(),

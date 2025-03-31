@@ -6,14 +6,21 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Auth\\AppointmentController' => $baseDir . '/app/Http/Controllers/Auth/AppointmentController.php',
+    'App\\Http\\Controllers\\Auth\\CarsDataController' => $baseDir . '/app/Http/Controllers/Auth/CarsDataController.php',
     'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',
+    'App\\Http\\Controllers\\Auth\\LogoutController' => $baseDir . '/app/Http/Controllers/Auth/LogoutController.php',
     'App\\Http\\Controllers\\Auth\\RegisterController' => $baseDir . '/app/Http/Controllers/Auth/RegisterController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
+    'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
+    'App\\Http\\Middleware\\CheckTokenExpiration' => $baseDir . '/app/Http/Middleware/CheckTokenExpiration.php',
+    'App\\Http\\Middleware\\EnsureUserExists' => $baseDir . '/app/Http/Middleware/EnsureUserExists.php',
     'App\\Http\\Middleware\\HandleCors' => $baseDir . '/app/Http/Middleware/HandleCors.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Models\\appointments' => $baseDir . '/app/Models/appointments.php',
+    'App\\Models\\cars' => $baseDir . '/app/Models/cars.php',
     'App\\Models\\user_login' => $baseDir . '/app/Models/user_login.php',
     'App\\Models\\user_register' => $baseDir . '/app/Models/user_register.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',

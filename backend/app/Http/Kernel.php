@@ -71,7 +71,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'user.exists' => \App\Http\Middleware\EnsureUserExists::class,
+        'ensure.user.exists' => \App\Http\Middleware\EnsureUserExists::class,
         'check.token.expiration' => \App\Http\Middleware\CheckTokenExpiration::class,
     ];
     

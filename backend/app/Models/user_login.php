@@ -14,7 +14,7 @@ class user_login extends Authenticatable
     use Notifiable, HasApiTokens, HasFactory;
 
     protected $table = "user_login";    
-    protected $primaryKey = "user_login";
+    protected $primaryKey = "login_id";
     public $timestamps = false;    
     protected $fillable = [
         'login_email',

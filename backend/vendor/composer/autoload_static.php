@@ -536,14 +536,21 @@ class ComposerStaticInit660a8a0fab7dbb74be8ca5bdc44e7cae
     );
 
     public static $classMap = array (
+        'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\AppointmentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AppointmentController.php',
+        'App\\Http\\Controllers\\Auth\\CarsDataController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/CarsDataController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
+        'App\\Http\\Controllers\\Auth\\LogoutController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LogoutController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
+        'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
+        'App\\Http\\Middleware\\CheckTokenExpiration' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckTokenExpiration.php',
+        'App\\Http\\Middleware\\EnsureUserExists' => __DIR__ . '/../..' . '/app/Http/Middleware/EnsureUserExists.php',
         'App\\Http\\Middleware\\HandleCors' => __DIR__ . '/../..' . '/app/Http/Middleware/HandleCors.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\appointments' => __DIR__ . '/../..' . '/app/Models/appointments.php',
+        'App\\Models\\cars' => __DIR__ . '/../..' . '/app/Models/cars.php',
         'App\\Models\\user_login' => __DIR__ . '/../..' . '/app/Models/user_login.php',
         'App\\Models\\user_register' => __DIR__ . '/../..' . '/app/Models/user_register.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',

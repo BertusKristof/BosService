@@ -12,19 +12,20 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('appointments', function (Blueprint $table) {
-            $table->id(); 
-            $table->string('contact_name');
-            $table->string('appointment_service')->nullable();
-            $table->time('appointment_time')->nullable();
-            $table->date('appointment_date')->nullable();
-            $table->timestamps(); 
-        });
-    }
+{
+    Schema::create('appointments', function (Blueprint $table) {
+        $table->id();
+        $table->string('id')->index();
+        $table->string('appointment_service');
+        $table->date('appointment_date');
+        $table->time('appointment_time');
+        $table->timestamps();
+    });
+}
+
 
     public function down()
     {
-        Schema::dropIfExists('appointments');
+        
     }
 };

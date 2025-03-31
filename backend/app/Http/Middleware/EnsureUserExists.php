@@ -4,19 +4,14 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class EnsureUserExists
 {
-    /**
-     * Handle an incoming request.
-     */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-        if (auth()->user() === null) {
-            // Token érvénytelenítése
-            auth()->logout();
-            return response()->json(['message' => 'Felhasználó nem található.'], 401);
+        if (!Auth::check()) {
+            return response()->json(['message' => 'User not authenticated'], 401);
         }
 
         return $next($request);
