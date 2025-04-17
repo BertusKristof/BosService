@@ -1,0 +1,32 @@
+<header>
+  <div class="container">
+    <nav>
+      <!-- Logo Section -->
+      <div class="logo-container">
+        <img src="../assets/kepek/logo2.0.png" class="logo" alt="BosService Logo">
+        <h1>BosService</h1>
+      </div>
+
+      <!-- Navigation Links -->
+      <div class="nav-links" [class.active]="menuActive">
+        <a href="#about">Rólunk</a>
+        <a href="#services">Szolgáltatásaink</a>
+        <a href="#team">Csapatunk</a>
+        <a href="#contact">Elérhetőség</a>
+        <ng-container *ngIf="isLoggedIn; else loginLink">
+          <button (click)="onLogout()" class="login-link">Kijelentkezés</button>
+        </ng-container>
+        <ng-template #loginLink>
+          <a routerLink="/login" class="login-link">Bejelentkezés</a>
+        </ng-template>
+      </div>
+
+      <!-- Hamburger Menu -->
+      <div class="hamburger" (click)="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </div>
+</header>

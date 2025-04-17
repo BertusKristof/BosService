@@ -1,0 +1,38 @@
+<main class="registration-container">
+  <section class="register-section">
+    <form class="register-form" (ngSubmit)="register()">
+      <h2>Regisztráció</h2>
+
+      <div class="form-group">
+        <label for="last_name">Vezetéknév</label>
+        <input type="text" id="last_name" [(ngModel)]="registerData.last_name" name="last_name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="first_name">Keresztnév</label>
+        <input type="text" id="first_name" [(ngModel)]="registerData.first_name" name="first_name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="register_email">Email-cím</label>
+        <input type="email" id="register_email" [(ngModel)]="registerData.register_email" name="register_email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="register_phone">Telefonszám</label>
+        <input type="text" id="register_phone" [(ngModel)]="registerData.register_phone" name="register_phone" required>
+      </div>
+
+      <div class="form-group">
+        <label for="register_password">Jelszó</label>
+        <input type="password" id="register_password" [(ngModel)]="registerData.register_password" name="register_password" required>
+      </div>
+
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" class="register-button">Regisztráció</button>
+    </form>
+  </section>
+</main>

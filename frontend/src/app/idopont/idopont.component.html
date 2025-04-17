@@ -1,0 +1,83 @@
+<main>
+  <section class="booking">
+    <h2>Foglaljon időpontot könnyedén!</h2>
+    
+    <!-- Fő foglalási űrlap -->
+    <form (ngSubmit)="confirmBooking()" #bookingForm="ngForm">
+      <div class="booking-container">
+        <!-- Grouped sections for Szolgáltatás, Dátum, and Időpont -->
+        <div class="form-row">
+          <div class="service-select">
+            <h3>Válasszon szolgáltatást</h3>
+            <button type="button" class="service-button" (click)="selectService('Gumicsere')">Gumicsere</button>
+            <button type="button" class="service-button" (click)="selectService('Olajcsere')">Olajcsere</button>
+            <button type="button" class="service-button" (click)="selectService('Diagnosztika')">Diagnosztika</button>
+            <input type="hidden" [(ngModel)]="selectedService" name="service" required>
+          </div>
+          
+          <div class="calendar">
+            <h3>Válasszon dátumot</h3>
+            <input type="date" class="date-picker" [(ngModel)]="selectedDate" name="bookingDate" required>
+          </div>
+          
+          <div class="time-slot">
+            <h3>Válasszon időpontot</h3>
+            <div class="time-buttons">
+              <button *ngFor="let time of timeSlots" 
+                      type="button" 
+                      class="time-button"
+                      (click)="selectTime(time)"
+                      [class.selected]="time === selectedTime">
+                {{ time }}
+              </button>
+            </div>
+            <input type="hidden" [(ngModel)]="selectedTime" name="bookingTime" required>
+          </div>
+        </div>
+        
+        <!-- Summary section placed below -->
+        <div class="summary">
+          <h3>Foglalás összegzése</h3>
+          <pre>{{ summary }}</pre>
+          <button type="button" class="booking-button" (click)="openCarModal()">Autó adatok megadása</button>
+          <button type="submit" class="booking-button">Foglalás megerősítése</button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Modal -->
+    <div class="car-modal" *ngIf="showCarModal">
+      <div class="car-modal-content">
+        <span class="car-close" (click)="closeCarModal()">&times;</span>
+        <h2>Autó adatok</h2>
+        <form (ngSubmit)="submitCarModal()">
+          <div class="form-group">
+            <label>Rendszám:</label>
+            <input type="text" [(ngModel)]="carData.license_plate" name="licensePlate" required>
+          </div>
+          <div class="form-group">
+            <label>Autó Márka:</label>
+            <input type="text" [(ngModel)]="carData.brand" name="brand" required>
+          </div>
+          <div class="form-group">
+            <label>Autó Modell:</label>
+            <input type="text" [(ngModel)]="carData.model" name="model" required>
+          </div>
+          <div class="form-group">
+            <label>Évjárat:</label>
+            <input type="number" [(ngModel)]="carData.year" name="year" required>
+          </div>
+          <div class="modal-buttons">
+            <button type="button" class="modal-button cancel" (click)="closeCarModal()">Mégse</button>
+            <button type="submit" class="modal-button save">Mentés</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Hibaüzenetek -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  </section>
+</main>
